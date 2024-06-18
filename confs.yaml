@@ -1,0 +1,14 @@
+PORT: 7000
+
+NOTEBOOK_HOST: 
+NOTEBOOK_PATH: /lab?token={JUPYTER_TOKEN}
+
+image_from: quay.io/jupyter/pytorch-notebook
+# image_from: notebook-lite:latest
+max_instances: 3
+
+port_range:
+  start: 8000
+  end: 9000
+
+volume_base_path: "./workspace"
