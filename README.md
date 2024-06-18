@@ -224,7 +224,7 @@ curl -X GET http://localhost:7000/shortCid/force
 1. 克隆项目：
 
 ```bash
-git clone https://github.com/yourusername/notebook-hub.git
+git clone https://github.com/zonebond/notebook-hub.git
 cd notebook-hub
 ```
 
