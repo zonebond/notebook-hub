@@ -121,7 +121,7 @@ curl -X POST http://localhost:7000/notebook \
 }
 ```
 
-### 停止 Jupyter Notebook 容器
+### 停止 Notebook 容器
 
 **URL:** `/stop/:id`
 **方法:** `GET`
