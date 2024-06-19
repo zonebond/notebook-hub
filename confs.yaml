@@ -4,7 +4,7 @@ NOTEBOOK_HOST:
 NOTEBOOK_PATH: /lab?token={JUPYTER_TOKEN}
 
 image_from: quay.io/jupyter/pytorch-notebook
-# image_from: notebook-lite:latest
+
 max_instances: 3
 
 port_range:

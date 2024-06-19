@@ -45,7 +45,7 @@ app.post('/notebook', (req, res) => {
 
         const optionsMap = options ? JSON.parse(options) : {};
 
-        COPY_TO_WORKSPACE(template || 'default', work_volume, (err) => {
+        COPY_TO_WORKSPACE(template || 'base-notebook', work_volume, (err) => {
             if(err) {
                 return res.status(500).send('Failed to copy template to workspace');
             }

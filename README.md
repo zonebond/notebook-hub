@@ -92,9 +92,9 @@ volume_base_path: "./workspace"
 
 ## API
 
-### 启动 Jupyter Notebook 容器
+### 启动 Notebook 容器
 
-**URL:** `/start`  
+**URL:** `/notebook`  
 **方法:** `POST`  
 **参数:**
 
@@ -105,7 +105,7 @@ volume_base_path: "./workspace"
 **请求示例:**
 
 ```bash
-curl -X POST http://localhost:7000/start \
+curl -X POST http://localhost:7000/notebook \
   -F "instance=example_instance" \
   -F "template=base-notebook" \
   -F "options={\"key\":\"value\"}"
@@ -195,7 +195,7 @@ curl -X DELETE http://localhost:7000/shortCid
 }
 ```
 
-### 强制 - 删除运行中的容器
+### 强制 删除运行中 Notebook 的容器
 
 **URL:** `/:id/force`
 **方法:** `GET`
