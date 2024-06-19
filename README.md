@@ -91,8 +91,7 @@ volume_base_path: "./workspace"
 
 - 启动 Notebook 容器
 - 停止 Notebook 容器
-- 列出所有 Notebook 容器
-- 查询ID对应的Notebook信息
+- 查询 Notebook 信息
 - 删除 Notebook 容器及其挂载的卷
 - 强制 删除运行中的Notebook容器及其挂载的卷
 
@@ -151,7 +150,7 @@ curl -X GET http://localhost:7000/stop/shortCid
 }
 ```
 
-### 列出所有 Notebook 容器
+### 查询 Notebook 信息
 
 **URL:** ` / or /:status? or /:notebook-id
 **方法:** `GET`
