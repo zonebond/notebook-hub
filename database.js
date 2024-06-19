@@ -28,7 +28,7 @@ db.run(`CREATE TABLE IF NOT EXISTS notebook_containers (
 
 // 插入容器信息
 const insert_container = (name, port, volume, token, cid, callback) => {
-    const id = generateUUID();
+    const id = `hb.${generateUUID()}`;
     const ctime = new Date().toISOString();
     db.run(`INSERT INTO notebook_containers (id, name, port, volume, token, cid, ctime) VALUES (?, ?, ?, ?, ?, ?, ?)`, [id, name, port, volume, token, cid, ctime], function(err) {
         if (err) {

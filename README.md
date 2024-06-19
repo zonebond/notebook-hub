@@ -15,13 +15,20 @@ Notebook Hub 是一个用于管理 Jupyter Notebook 容器的 API 服务。该�
 
 ## 构建和运行
 
-#### 1. 安装依赖项
+#### 1. 克隆项目 
+
+```bash
+git clone https://github.com/zonebond/notebook-hub.git
+cd notebook-hub
+```
+
+#### 2. 安装依赖项
 
 ```bash
 npm install
 ```
 
-#### 2. 启动运行
+#### 3. 启动运行
 
 ```bash
 npm run start
@@ -31,16 +38,16 @@ npm run start
 
 ## 目录结构
 
+##### notebook-hub
+
 ```
-arduino
-Copy code
-notebook-hub/
 ├── Dockerfile
 ├── README.md
 ├── database.js
 ├── index.js
 ├── package.json
 ├── tools.js
+├── workspace  ### notebook实例工作目录 ###
 ├── confs.yaml ### 项目配置文件 ###
 └── template/
     └── base-notebook/
@@ -82,11 +89,12 @@ volume_base_path: "./workspace"
 
 ## 功能
 
-- 启动 Jupyter Notebook 容器
-- 停止 Jupyter Notebook 容器
-- 列出所有 Jupyter Notebook 容器
-- 删除 Jupyter Notebook 容器及其挂载的卷
-- 强制删除运行中的容器及其挂载的卷
+- 启动 Notebook 容器
+- 停止 Notebook 容器
+- 列出所有 Notebook 容器
+- 查询ID对应的Notebook信息
+- 删除 Notebook 容器及其挂载的卷
+- 强制 删除运行中的Notebook容器及其挂载的卷
 
 
 
@@ -124,7 +132,7 @@ curl -X POST http://localhost:7000/notebook \
 ### 停止 Notebook 容器
 
 **URL:** `/stop/:id`
-**方法:** `GET`
+**方法:** `POST`
 **参数:**
 
 - `id`: 容器 ID，字符串类型
@@ -145,11 +153,13 @@ curl -X GET http://localhost:7000/stop/shortCid
 
 ### 列出所有 Notebook 容器
 
-**URL:** `/:status?`
+**URL:** ` / or /:status? or /:notebook-id
 **方法:** `GET`
 **参数:**
 
+- `/: ` (为空时) 返回所有notebook实例
 - `status` (可选): 容器状态，可选值为 `running`, `stopped`, `deleted`
+- `:notebook-id` (可选): 容器ID，返回notebook-id对应实例的信息
 
 **请求示例:**
 
@@ -198,7 +208,7 @@ curl -X DELETE http://localhost:7000/shortCid
 ### 强制 删除运行中 Notebook 的容器
 
 **URL:** `/:id/force`
-**方法:** `GET`
+**方法:** `DELETE`
 **参数:**
 
 - `id`: 容器 ID，字符串类型
@@ -219,16 +229,9 @@ curl -X GET http://localhost:7000/shortCid/force
 
 
 
-### 构建和运行
-
-1. 克隆项目：
-
-```bash
-git clone https://github.com/zonebond/notebook-hub.git
-cd notebook-hub
-```
 
 
+---
 
 ## 贡献
 

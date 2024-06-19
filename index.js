@@ -239,12 +239,38 @@ app.delete('/:id', (req, res) => {
 });
 
 // 列出所有Jupyter容器
+const VALIDSTATUSES = ['running', 'stopped', 'deleted'];
+
 app.get('/:status?', (req, res) => {
     const status = req.params.status || null;
-    const validStatuses = ['running', 'stopped', 'deleted'];
+    
 
-    if (status && !validStatuses.includes(status)) {
-        return res.status(400).send('Invalid status');
+    if(status) {
+        if(status.indexOf('hb.') === 0) {
+            console.log('get target container:', status)
+            db.get_target_container(status, (err, row) => {
+                if (err) {
+                    return res.status(500).send('Failed to retrieve container info');
+                }
+                if(!row) {
+                    return res.status(404).send('Container not found');
+                }
+                res.json(row);
+            });
+            return;
+        }
+
+        if(!VALIDSTATUSES.includes(status)) {
+            return res.status(400).send('Invalid id or status');
+        }
+
+        db.get_containers(status, (err, rows) => {
+            if (err) {
+                return res.status(500).send('Failed to retrieve container list');
+            }
+            res.json(rows);
+        });
+        return;
     }
 
     db.get_containers(status, (err, rows) => {
